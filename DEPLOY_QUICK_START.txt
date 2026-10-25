@@ -1,0 +1,23 @@
+DAYONE v2 — NETLIFY FREE DEPLOY
+
+1. Log into https://app.netlify.com/drop
+2. Upload the entire DAYONE ZIP / unzipped source folder (NOT just the site/ subfolder). Ensure a build runs and deploys netlify/functions.
+3. In Netlify project Environment variables create DAYONE_SYNC_KEY (random 32+ characters). Redeploy.
+4. Check https://YOUR-SITE.netlify.app/.netlify/functions/dayone-api : 401 means deployed and locked; 404 means cloud function missing.
+5. Website > Settings > Netlify Blobs sync. Enter same key on iPhone and PC.
+6. iPhone Safari > Share > Add to Home Screen.
+7. Progress > Import export.xml for manual Apple Health metrics (Health > Profile > Export All Health Data; unzip first).
+
+No Firebase. Your data is local until private Netlify sync is connected. Free Netlify usage allowance applies.
+
+See README.md for details and alternative CLI deploy commands.
+
+
+DAYONE v2.1 PHOTO ALIGNMENT
+----------------------------
+Re-deploy this update to your SAME Netlify site to keep the current site address and Blobs backup.
+Open Progress, select matching Day 1 / later front-side-back photos, and use the Auto align overlay.
+It uses a free model in your browser, no additional account or paid API. On a standard Netlify
+source build, the pose model is hosted on your Netlify site. Internet is needed for the first
+model download; manual alignment works with no AI connection.
+Existing day logs and photos are not changed.

@@ -1,0 +1,14 @@
+{
+  "name": "dayone-gym-netlify",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^10.4.0",
+    "@mediapipe/tasks-vision": "0.10.35"
+  },
+  "scripts": {
+    "build": "node scripts/prepare-pose.mjs",
+    "serve": "npx netlify dev"
+  }
+}
