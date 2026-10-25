@@ -1,4 +1,12 @@
-# DAYONE — Netlify-only training journal (v2.1)
+# Important: Fix a 404 and publish correctly
+
+The earlier ZIP contained `site/index.html`, not an `index.html` at its archive root. When Netlify uploads it **without a build**, the homepage may return 404. This package is the **full-source, Function-capable** option, not the drop-ready static ZIP.
+
+On Windows, extract this ZIP and run **`DEPLOY_ON_WINDOWS.cmd`**. It uses the free Netlify CLI to publish the `site/` directory and the `netlify/functions/` backend to your **existing site**. Install the free Node.js LTS first if needed. For a 404 fix with simple drag-and-drop (without Blobs sync), use the separate `DAYONE_v2_2_GIFs_NETLIFY_DROP.zip`, where `index.html` is at the root.
+
+**Do not assume that dragging the full-source ZIP to Netlify will run its build.** Build handling varies by deployment method. If Netlify publishes the archive contents as-is, there is no root `index.html`. Use the bundled Windows deploy script for a reliable upload of Functions and static files.
+
+# DAYONE — Netlify-only training journal (v2.2)
 
 A 100-day mobile-first, installable PWA for the program beginning **Monday, 26 October 2026**, ending **Tuesday, 2 February 2027**.
 
@@ -12,10 +20,10 @@ A 100-day mobile-first, installable PWA for the program beginning **Monday, 26 O
 
 ## Publish (Netlify Free)
 
-### Recommended: Netlify Drop when signed in
+### Full source: Netlify CLI (recommended for private sync)
 
 1. Create/sign in to a **free Netlify account**.
-2. Upload the **full source folder** or ZIP (containing `package.json`, `netlify.toml`, `site/` and `netlify/functions/`) at https://app.netlify.com/drop . You must be signed in for Netlify to run the build. **Do not upload just the `site/` folder**: that deploys only the offline app without your cloud function.
+2. For private cloud sync, **extract this ZIP and run `DEPLOY_ON_WINDOWS.cmd` on Windows** (or use the CLI commands below on macOS/Linux). Link to your **existing site** when prompted. Do not rely on a manual drag-and-drop build.
 3. Once a project is created, open **Project configuration → Environment variables**. Create `DAYONE_SYNC_KEY` with a unique random value **at least 20 characters long**, e.g. a password manager generated 32+ character string. Set it for Functions; do not put it into source code.
 4. **Redeploy** from source after setting the environment variable so the Function picks it up.
 5. Open `https://YOUR-PROJECT.netlify.app/.netlify/functions/dayone-api` in a browser. A **401** response indicates the function is deployed and requires authorization (expected). **503** means the key is unset or too short. **404** means the Functions were not deployed; repeat with a full Netlify build or use the CLI method below.
@@ -35,7 +43,7 @@ A 100-day mobile-first, installable PWA for the program beginning **Monday, 26 O
 
    Follow the Netlify prompts to link or create your free site. The CLI deploy command builds and uploads the `site/` files **and** the `netlify/functions/` code. Set the secret environment variable and redeploy as above.
 
-## Photo comparison: automatic alignment (new in v2.1)
+## Photo comparison: automatic alignment (from v2.1)
 
 1. Open **Progress → Photo comparison**. Take or upload photos for **Day 1** and another day, matching the angle (front, side or back).
 2. Both images loading triggers **Auto align** automatically, if the detection model is available. You can also tap **Auto align** to retry. The app matches shoulders/hips and adjusts **translation, uniform scale and tilt** of the *displayed after image* against the before image.
@@ -80,3 +88,16 @@ A 100-day mobile-first, installable PWA for the program beginning **Monday, 26 O
 - `site/photo-align.js`: registration math and local pose detection; comparison controls live in `site/app.js`.
 
 **Note:** This ZIP is source code ready for deployment; the Netlify Function hasn't been executed on your account and cloud backup remains unconfigured until you supply a private key there.
+
+
+## Exercise demonstration GIFs (new in v2.2)
+
+- Go to **Training**, expand an exercise, then look for **Movement demo**. A small number of precise bodyweight examples have curated links to Wikimedia Commons; tap **Source / licence** to review each file's origin and reuse conditions.
+- Tap **Find GIF** to query the **ExerciseDB V1 free API from AscendAPI** for the selected movement. Confirm the correct equipment/variation from the matches before using it. The source is not part of the purchased Akash program.
+- If a compatible GIF does not appear (provider unavailable, rate limit, unmatched variation, or offline), choose **Use my link** for an authorized HTTPS GIF/JPG/PNG/WebP/MP4/WebM. Direct links are not downloaded or bundled with this website; you are responsible for permission to embed them. You can also open the **ExRx technique search** link.
+- ExerciseDB's free endpoint uses an **180p GIF** and is available for **personal, educational, non-commercial** use with attribution; using this app commercially may require a different media licence. Requests are made only when **Find GIF** is tapped, not at page load, and rate limits apply. We do not redistribute ExerciseDB/Anatoly Fit media in the ZIP. Provider: https://oss.exercisedb.dev/docs .
+- Your chosen exercise demo URLs and source names are included in JSON backups and in private Netlify Blobs state when sync is connected. The images themselves are third-party-hosted, may require mobile data, and can disappear if the original host removes them.
+- When deployed by static drag-and-drop, the browser must allow direct API CORS requests. The **full-source Netlify deployment** includes a same-site Function that can proxy searches when direct CORS requests fail. The free provider's service availability/CORS behavior cannot be verified locally in this offline packaging environment.
+- Some variants (e.g., wide vs. close-grip pulldowns, incline vs. flat press, machine vs. free-weight) differ materially. Always cross-check the matched exercise and the **course PDF**. A no-match message is preferable to a misleading example.
+
+Deployment and verification: static file layout and JS syntax have been checked; live provider lookup, iPhone Safari playback and production Netlify Functions need testing after deployment.

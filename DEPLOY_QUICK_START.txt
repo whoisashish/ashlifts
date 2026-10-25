@@ -1,23 +1,42 @@
-DAYONE v2 — NETLIFY FREE DEPLOY
+DAYONE v2.2 -- NETLIFY 404 FIX (25 OCT 2026)
 
-1. Log into https://app.netlify.com/drop
-2. Upload the entire DAYONE ZIP / unzipped source folder (NOT just the site/ subfolder). Ensure a build runs and deploys netlify/functions.
-3. In Netlify project Environment variables create DAYONE_SYNC_KEY (random 32+ characters). Redeploy.
-4. Check https://YOUR-SITE.netlify.app/.netlify/functions/dayone-api : 401 means deployed and locked; 404 means cloud function missing.
-5. Website > Settings > Netlify Blobs sync. Enter same key on iPhone and PC.
-6. iPhone Safari > Share > Add to Home Screen.
-7. Progress > Import export.xml for manual Apple Health metrics (Health > Profile > Export All Health Data; unzip first).
+WHY THE ERROR HAPPENED
+The earlier uploaded ZIP kept index.html inside site/. If Netlify published that ZIP
+as static files rather than running a build, the deployed root URL had no index.html.
 
-No Firebase. Your data is local until private Netlify sync is connected. Free Netlify usage allowance applies.
+CHOOSE THE METHOD YOU NEED:
 
-See README.md for details and alternative CLI deploy commands.
+A. FIX THE 404 IN ONE STEP (THE SIMPLE METHOD)
+    File: DAYONE_v2_2_GIFs_NETLIFY_DROP.zip
 
+    1. In Netlify, open the EXISTING project that displays 404.
+    2. Open Deploys > drag-and-drop/manual deploy area.
+    3. Drag in this ZIP directly. It has index.html AT THE ZIP ROOT.
+    4. Open the EXISTING site URL, not a newly created site.
+    5. The site opens, logs workouts, weight, photos, and compares images locally.
 
-DAYONE v2.1 PHOTO ALIGNMENT
-----------------------------
-Re-deploy this update to your SAME Netlify site to keep the current site address and Blobs backup.
-Open Progress, select matching Day 1 / later front-side-back photos, and use the Auto align overlay.
-It uses a free model in your browser, no additional account or paid API. On a standard Netlify
-source build, the pose model is hosted on your Netlify site. Internet is needed for the first
-model download; manual alignment works with no AI connection.
-Existing day logs and photos are not changed.
+    LIMITATION: Manual static uploads do NOT install the Netlify Function.
+    Sync to Blobs needs method B.
+
+B. FIX THE 404 *AND* ENABLE PRIVATE NETLIFY BLOBS SYNC
+    File: DAYONE_v2_2_GIFs_FULL_NETLIFY_BLOBS.zip
+
+    1. Extract this full source ZIP on a Windows computer.
+    2. Double-click DEPLOY_ON_WINDOWS.cmd.
+    3. Install free Node.js LTS only if the script asks.
+    4. When Netlify asks, link to your EXISTING site.
+    5. On Netlify, add environment variable DAYONE_SYNC_KEY with a random,
+       unique value at least 20 characters; rerun DEPLOY_ON_WINDOWS.cmd.
+    6. Visit https://YOUR-SITE.netlify.app/.netlify/functions/dayone-api .
+       401 = function is active and protected (good);
+       503 = you still need to set the environment variable;
+       404 = the function was not deployed.
+    7. In your app Settings, enter the same private key and connect & merge.
+
+IMPORTANT
+- No Firebase, GitHub, paid database, or subscription is needed.
+- Netlify Free has credit and storage limits.
+- Do not make your private sync key public.
+- Keep deploying to the SAME site address to retain device records and cloud data.
+- The PWA cannot automatically read iPhone HealthKit; use manual XML import.
+- If you only want to repair the 404 today, choose method A.

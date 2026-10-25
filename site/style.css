@@ -196,3 +196,27 @@ h1,h2,h3,.page-title,.section-title,.section-head h2,.ex-title strong,.stat-main
 .align-sliders input{grid-column:1/-1}
 @media(max-width:690px){.comparison-toolbar{gap:7px}.comparison-toolbar .secondary{padding:9px 10px}.view-toggle button{padding:10px 9px}.compare-overlay{height:clamp(325px,60vh,520px)}.reveal-control{grid-template-columns:1fr;gap:8px}.reveal-control strong{display:none}.align-sliders{grid-template-columns:1fr;gap:15px}}
 @media(max-width:375px){.comparison-toolbar .align-reset{margin-left:auto}.comparison-toolbar .view-toggle{width:100%}.comparison-toolbar .view-toggle button{flex:1}.align-fine-tune summary span{display:block;margin:4px 0 0}}
+/* DAYONE v2.2 | exercise demonstrations: quiet, tactile and readable in a gym */
+.demo-panel{border:1px solid var(--line, #dce0dd);background:var(--surface-secondary,#f6f7f4);border-radius:13px;padding:14px;margin:1px 0 18px;color:var(--text,#151918)}
+.demo-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:11px}
+.demo-title strong{font-size:13px;letter-spacing:-.015em}
+.demo-title span{font-size:11px;color:var(--muted,#65716b)}
+.demo-media{background:#ebeeea;min-height:172px;max-height:270px;border-radius:9px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.demo-media img,.demo-media video{display:block;max-width:100%;width:auto;height:auto;max-height:266px;object-fit:contain}
+.demo-media video{width:100%;max-height:270px}
+.demo-error{font-size:12px;color:var(--muted);padding:18px}
+.demo-error[hidden]{display:none}
+.demo-attribution,.demo-fineprint{color:var(--muted,#66716a);font-size:11px;line-height:1.65;margin:8px 0 0}
+.demo-attribution a,.demo-fineprint a{color:var(--text,#151918);text-decoration:underline;text-underline-offset:3px}
+.demo-empty{min-height:96px;display:flex;align-items:center;justify-content:center;border-radius:9px;border:1px dashed #c7cec8;color:var(--muted);padding:15px;text-align:center;font-size:12px;line-height:1.65}
+.demo-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.demo-actions button{display:inline-flex;align-items:center;gap:6px;padding:9px 12px!important;font-size:12px!important;min-height:38px}
+.demo-status{font-size:11px;color:var(--muted);margin:9px 0 0;min-height:0}
+.demo-status:empty{display:none}
+.demo-results{display:grid;gap:6px;margin-top:10px}
+.demo-option{border:1px solid #dce0dd;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:space-between;text-align:left;padding:11px 12px;gap:11px;color:#1e2721;cursor:pointer}
+.demo-option:hover{border-color:#9ba99d}
+.demo-option>span:first-child{display:flex;flex-direction:column;gap:2px}
+.demo-option strong{font-size:12px}
+.demo-option small,.demo-option>span:last-child{font-size:10px;color:#68746b}
+@media(max-width:540px){.demo-panel{margin-bottom:14px;padding:12px}.demo-media{max-height:220px;min-height:130px}.demo-media img{max-height:215px}.demo-title{align-items:start}.demo-title span{text-align:right}.demo-actions{display:grid;grid-template-columns:1fr 1fr}.demo-actions .ghost{grid-column:1/-1}}
